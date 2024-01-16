@@ -4,6 +4,7 @@ sys.path.append("../")
 import llm.gemini_pro as gemini_pro
 import tools.search as search
 from langchain.tools.yahoo_finance_news import YahooFinanceNewsTool
+from newsapi import NewsApiClient
 
 from crewai import Agent
 
@@ -23,7 +24,7 @@ Finance_Analyst = Agent(
 researcher = Agent(
       role='Staff Indian Research Analyst',
       goal="""Being the best at gather, interpret data and amaze
-      your customer with it relevant in 2024 for """ + str(datetime.datetime.now()),
+      your customer with it relevant in 2024 for """ + str(datetime.datetime.now())+""". You can use new website like https://www.moneycontrol.com/, https://www.businesstoday.in/, https://www.livemint.com/ and https://www.indiainfoline.com/,https://www.livehindustan.com/""",
       backstory="""Known as the BEST research analyst, you're
       skilled in sifting through Indian news, Indian company announcements, 
       and Indian market sentiments. Now you're working on a super 

@@ -7,7 +7,7 @@ import datetime
 
 # Create tasks for your agents
 task1 = Task(
-    description="""Conduct a comprehensive analysis of {Topic} share price up to date in 2024 for """ + str(datetime.datetime.now()) + """.
+    description="""Conduct a comprehensive analysis of {Topic} share price up to date in 2024 for """ + str(datetime.datetime.now()) +""". You can use new website like https://www.moneycontrol.com/, https://www.businesstoday.in/, https://www.livemint.com/ and https://www.indiainfoline.com/,https://www.livehindustan.com/
     Identify key trends and follow latest news. Provide actionable insights.
     Your final answer MUST be a full indian stock analysis report""",
     agent=agents.researcher
@@ -20,7 +20,8 @@ task2 = Task(
         P/E ratio, EPS growth, revenue trends, and 
         debt-to-equity ratio. 
         Also, analyze the {Topic} stock's performance in comparison 
-        to its industry peers and overall market trends in 2024 for """ + str(datetime.datetime.now()) + """.
+        to its industry peers and overall market trends in 2024 for """ + str(datetime.datetime.now()) + """. You can use new website like https://www.moneycontrol.com/, https://www.businesstoday.in/, https://www.livemint.com/ and https://www.indiainfoline.com/,https://www.livehindustan.com/
+        
 
         Your final report MUST expand on the summary provided
         but now including a clear assessment of the stock's
@@ -57,7 +58,7 @@ task3 = Task(description=f"""
 crew = Crew(
     agents=[agents.researcher, agents.Finance_Analyst, agents.Advisor],
     tasks=[task1, task2, task3],
-    verbose=3,  # You can set it to 1 or 2 for different logging levels
+    verbose=2,  # You can set it to 1 or 2 for different logging levels
 )
 st.title("AI Stock Market Blog Writer")
 st.write("Welcome to the AI Stock Blog Writer!")
