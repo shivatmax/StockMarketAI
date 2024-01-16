@@ -5,8 +5,7 @@
     <h1 align="center">STOCKMARKETAI</h1>
 </p>
 <p align="center">
-    <em>Error generating text for slogan: Client error '401 Unauthorized' for url 'https://api.openai.com/v1/chat/completions'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401</em>
+	For Stock Market and Share Price Research From Authorized Sources
 </p>
 <p align="center">
 	<img src="https://img.shields.io/github/license/shivatmax/StockMarketAI?style=flat&color=0080ff" alt="license">
