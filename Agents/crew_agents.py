@@ -1,34 +1,53 @@
+import datetime
 import sys
 sys.path.append("../")
 import llm.gemini_pro as gemini_pro
 import tools.search as search
+from langchain.tools.yahoo_finance_news import YahooFinanceNewsTool
 
 from crewai import Agent
 
-researcher = Agent(
-  role='Senior indian stock-market Research Analyst',
-  goal='Uncover cutting-edge Daily indian stock Trends',
-  backstory="""You work at a leading indian stock-market Organisation.
-  Your expertise lies in identifying emerging trends like when to buy or sel and at what price.
-  You have a knack for dissecting complex data and presenting
-  actionable insights.""",
+Finance_Analyst = Agent(
+  role='The Best Indian Financial Analyst',
+  goal="""Impress all customers with your financial data 
+      and Indian market trends analysis auto date in 2024 for """+str(datetime.datetime.now()),
+  backstory="""The most seasoned financial analyst with 
+      lots of expertise in stock market analysis and investment
+      strategies that is working for a super important customer.""",
   verbose=True,
-  allow_delegation=False,
-  llm = gemini_pro.llm,  #\using google gemini pro API
-  tools=[
-        search.search_tool
-      ]
-)
-
-
-writer = Agent(
-  role='Finance and indian stock-market Content Strategist',
-  goal='Craft compelling content on indian stock-market and latest news',
-  backstory="""You are most profitable trader and read new related to finance everyday.""",
-  verbose=True,
-  allow_delegation=False,
   llm = gemini_pro.llm,  #using google gemini pro API
   tools=[
-    search.search_tool
+    search.search_tool,
   ]
 )
+researcher = Agent(
+      role='Staff Indian Research Analyst',
+      goal="""Being the best at gather, interpret data and amaze
+      your customer with it relevant in 2024 for """ + str(datetime.datetime.now()),
+      backstory="""Known as the BEST research analyst, you're
+      skilled in sifting through Indian news, Indian company announcements, 
+      and Indian market sentiments. Now you're working on a super 
+      important customer""",
+      verbose=True,
+      llm = gemini_pro.llm,
+      tools=[
+        search.search_tool,
+        # YahooFinanceNewsTool(),
+      ]
+  )
+
+Advisor=Agent(
+      role='Private Investment Advisor',
+      goal="""Impress your customers with full analyses over Indian stocks
+      and completer investment recommendations updo data in 2024 for """ + str(datetime.datetime.now()),
+      backstory="""You're the most experienced investment advisor
+      and you combine various analytical insights to formulate
+      strategic investment advice. You are now working for
+      a super important customer you need to impress.""",
+      verbose=True,
+      llm = gemini_pro.llm,
+      tools=[
+        search.search_tool,
+        # YahooFinanceNewsTool()
+      ]
+    )

@@ -4,3 +4,4 @@ langchain_google_genai
 langchain-community
 streamlit
 python-dotenv
+finance
