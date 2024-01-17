@@ -230,10 +230,8 @@ if topic:
                 shutil.rmtree(folder_path)
 
             clear_images_folder()
-            clear_pycache()
-            time.sleep(10)
+            time.sleep(5)
             os.remove(f"{topic}_stock_report.pdf")
-    clear_pycache()
         
 else:
     st.write("Please enter a Company Name to generate a stock report. Like Reliance ")
