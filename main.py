@@ -11,8 +11,15 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
 # Add image to Streamlit app
-image_path = "images/stock4-remove.png"
-st.image(image_path, use_column_width=True, caption="Stocky AI", width=500)
+image_path = "images/stocky3-b.png"
+
+col1, col2, col3 = st.columns([1, 1, 4])
+with col1:
+    st.write(" ")
+with col2:
+    st.image(image_path, width=400)
+with col3:
+    st.write(" ")
 
 # Add custom CSS styles
 st.markdown(
@@ -20,7 +27,7 @@ st.markdown(
     <style>
     body {
         font-family: Arial, sans-serif;
-        background-color: #FFCCCC;
+        background-color: #D1F7FF;
     }
     .container {
         max-width: 800px;
@@ -83,7 +90,10 @@ task1 = Task(
         releases, and market analyses related to the {Topic} stock price in india and
         its industry to the date """
     + str(datetime.datetime.now().date())
-    + """.You can use new website like https://www.moneycontrol.com/, https://www.businesstoday.in/, https://www.livemint.com/ and https://www.indiainfoline.com/,https://www.livehindustan.com/
+    + """.You must you news website like moneycontrol.com,
+        businesstoday.in, livemint.com and
+        indiainfoline.com, livehindustan.com
+        to scrape information.
         Pay special attention to any significant events, market
         sentiments, and analysts' opinions. Also include upcoming 
         events like earnings and others.
@@ -111,27 +121,19 @@ task3 = Task(
         health and metrics, market sentiment, and qualitative data from
         EDGAR filings with statistics, percentages, prices and numbers.
        
-        YOU MUST ADD new line charater '\ n' to the end of every full stop '.'
-       
         Make sure to include a section that shows insider 
         trading activity, and upcoming events like earnings.
-        
-        YOU MUST ADD new line charater '\ n' to the end of every full stop '.'
 
         Your final answer MUST be a recommendation with rating out of 10 for your
         customer.
+        
         It should be a full super detailed report, providing a 
         clear investment stance and strategy with supporting evidence.
-        
-        YOU MUST ADD new line charater '\ n' to the end of every full stop '.'
         
         Your Final Answer MUST be a detailed report with bullet points that includes all aspects, including Recent News, 
         Negative News, Positive News, Upcoming Events, Potential Impacts on the Stock, Key financial
         health and metrics, market sentiment, and qualitative data with statistics, percentages, prices and numbers.
-        
         Make it pretty and well formatted for your customer.
-        
-        YOU MUST ADD new line charater '\ n' to the end of every full stop '.'
       """,
     agent=agents.investment_Advisor,
 )
@@ -175,55 +177,45 @@ if topic:
         st.write("")
         a = st.button(f"Generate {topic} stock report", key="generate_report")
         st.write("")
-        # 
+
     if a:
         with st.spinner(f"Generating {topic} stock report..."):
             result = crew.kickoff()
-
             st.markdown("<h2 class='subtitle'>Stock Report</h2>", unsafe_allow_html=True)
-            t1 = result.replace("**", " ")
-            text1 = t1.replace(" *", "•")
-            st.write(text1)
+            st.write(result)
+            result = str(result).replace(". ", ". \n ")
+            result = result.replace("**", " ")
+            # result = re.sub(r'([a-zA-Z])\. ([a-zA-Z])', r'\1. \n\2', result)
+            result = result.replace("* ", "• ")
+            text1 = result
+            # print(text1)
             time.sleep(2)
-
-            print(text1)
 
             # Create a PDF canvas
             from reportlab.lib.units import inch
             c = canvas.Canvas(f"{topic}_stock_report.pdf", pagesize=letter)
-            c.setPageSize((15 * inch, 11.7 * inch))
+            c.setPageSize((14 * inch, 11.7 * inch))
 
             w, h = letter
-            c.drawImage(company_logo, x=100, y=h - 50, width=100, height=75)
+            c.drawImage(company_logo, x=100, y= h - 50, width=100, height=75)
 
             # Write the result text below the company logo
-            c.setFont("Helvetica", 8)
-            text = c.beginText(20, h - 60)
-            text.textLines(str(text1))
+            c.setFont("Helvetica", 10)
+            text = c.beginText(20, h - 80)
+            text.textLines(text1)
             c.drawText(text)
             c.showPage()
             # Save and close the PDF canvas
             c.save()
-
-            def openfile(topic):
-                with open(f"{topic}_stock_report.pdf", "rb") as file:
-                    return file.read()
-
-            # Provide a download button for the PDF file
-            st.download_button(
-                label="Download Stock Report",
-                data=openfile(topic),
-                file_name=f"{topic}_stock_report.pdf",
-                mime="application/pdf"
-            )
-
             def clear_images_folder():
                 folder_path = "images/company"
                 shutil.rmtree(folder_path)
 
             clear_images_folder()
+            clear_pycache()
             time.sleep(10)
             os.remove(f"{topic}_stock_report.pdf")
             clear_pycache()
+        
 else:
-    st.write("Please enter a Company Name to generate a stock report. Like Tata Motors")
+    st.write("Please enter a Company Name to generate a stock report. Like Reliance ")
