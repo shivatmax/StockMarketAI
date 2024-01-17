@@ -159,9 +159,11 @@ topic = st.text_input("Enter the Name of Company")
 # Check if the topic is provided
 if topic:
     logo = bi.CompanyLogo(topic)
+
+    time.sleep(5)
     company_logo = str(logo)
 
-    time.sleep(1)
+   
 
     # Update the task descriptions with the user-provided topic
     task1.description = task1.description.format(Topic=topic)
