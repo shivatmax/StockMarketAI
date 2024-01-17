@@ -200,13 +200,26 @@ if topic:
             c.drawImage(company_logo, x=100, y= h - 50, width=100, height=75)
 
             # Write the result text below the company logo
-            c.setFont("Helvetica", 10)
+            c.setFont("Helvetica", 9)
             text = c.beginText(20, h - 80)
             text.textLines(text1)
             c.drawText(text)
             c.showPage()
             # Save and close the PDF canvas
             c.save()
+
+            def openfile(topic):
+                with open(f"{topic}_stock_report.pdf", "rb") as file:
+                    return file.read()
+
+            # Provide a download button for the PDF file
+            st.download_button(
+                label="Download Stock Report",
+                data=openfile(topic),
+                file_name=f"{topic}_stock_report.pdf",
+                mime="application/pdf"
+            )
+
             def clear_images_folder():
                 folder_path = "images/company"
                 shutil.rmtree(folder_path)
