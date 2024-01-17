@@ -5,3 +5,5 @@ langchain-community
 streamlit
 python-dotenv
 yfinance
+reportlab
+IPython
