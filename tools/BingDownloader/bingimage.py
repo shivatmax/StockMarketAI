@@ -1,7 +1,6 @@
-from bing_image_downloader import downloader
+from tools.BingDownloader import downloader
 import os
 from PIL import Image
-
 def CompanyLogo(Topic):
     querystring = f"{Topic} Company logo"
     downloader.download(querystring, limit=1,  output_dir='images\company', adult_filter_off=True, force_replace=True, timeout=20, verbose=True)

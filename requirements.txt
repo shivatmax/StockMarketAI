@@ -7,4 +7,3 @@ python-dotenv
 yfinance
 reportlab
 IPython
-bing_image_downloader

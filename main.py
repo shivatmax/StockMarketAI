@@ -6,7 +6,7 @@ from crewai import Task, Crew
 import Agents.crew_agents as agents
 import datetime
 from clear_pycache import clear_pycache
-import tools.bingimage as bi
+import tools.BingDownloader.bingimage as bi
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
