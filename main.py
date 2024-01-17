@@ -10,6 +10,7 @@ import tools.BingDownloader.bingimage as bi
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
+st.set_page_config(layout="wide")
 # Add image to Streamlit app
 image_path = "images/stocky3-b.png"
 
@@ -196,13 +197,13 @@ if topic:
             # Create a PDF canvas
             from reportlab.lib.units import inch
             c = canvas.Canvas(f"{topic}_stock_report.pdf", pagesize=letter)
-            c.setPageSize((14 * inch, 11.7 * inch))
+            c.setPageSize((12 * inch, 15 * inch))
 
             w, h = letter
             c.drawImage(company_logo, x=100, y= h - 50, width=100, height=75)
 
             # Write the result text below the company logo
-            c.setFont("Helvetica", 9)
+            c.setFont("Helvetica", 11)
             text = c.beginText(20, h - 80)
             text.textLines(text1)
             c.drawText(text)
