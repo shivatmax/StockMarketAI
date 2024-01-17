@@ -140,15 +140,17 @@ task3 = Task(
 )
 
 # Instantiate your crew with a sequential process
-crew = Crew(
-    agents=[
-        agents.Finance_Analyst,
-        agents.Finance_researcher,
-        agents.investment_Advisor,
-    ],
-    tasks=[task1, task2, task3],
-    verbose=False,  # You can set it to 1 or 2 for different logging levels
-)
+def crew():
+    crew = Crew(
+        agents=[
+            agents.Finance_Analyst,
+            agents.Finance_researcher,
+            agents.investment_Advisor,
+        ],
+        tasks=[task1, task2, task3],
+        verbose=False,  # You can set it to 1 or 2 for different logging levels
+    )
+    return crew.kickoff()
 
 # Add custom styling to the app
 st.markdown("<h1 class='title'>Stocky AI!!</h1>", unsafe_allow_html=True)
@@ -183,7 +185,7 @@ if topic:
 
     if a:
         with st.spinner(f"Generating {topic} stock report..."):
-            result = crew.kickoff()
+            result = crew()
             st.markdown("<h2 class='subtitle'>Stock Report</h2>", unsafe_allow_html=True)
             st.write(result)
             result = str(result).replace(". ", ". \n ")
