@@ -137,18 +137,8 @@ pip install -r requirements.txt
 Use the following command to run StockMarketAI:
 
 ```sh
-python main.py
+streamlit run main.py
 ```
-
-###  Tests
-
-To execute tests, run:
-
-```sh
-pytest
-```
-
----
 
 ##  Project Roadmap
 
@@ -190,21 +180,5 @@ Contributions are welcome! Here are several ways you can contribute:
 7. **Submit a Pull Request**: Create a PR against the original project repository. Clearly describe the changes and their motivations.
 
 Once your PR is reviewed and approved, it will be merged into the main branch.
-
-</details>
-
----
-
-##  License
-
-This project is protected under the [SELECT-A-LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
-
----
-
-##  Acknowledgments
-
-- List any resources, contributors, inspiration, etc. here.
-
-[**Return**](#-quick-links)
 
 ---
