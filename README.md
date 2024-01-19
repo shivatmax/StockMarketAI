@@ -63,8 +63,14 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
     ├── llm
     │   ├── .env
     │   └── gemini_pro.py
+    ├── tools
+    │   ├── Duckduckgo
+    │   └── googleFinance
+    │   └── YahooFinance'
+    │   └── BingImage Downloader
     ├── main.py
     └── requirements.txt
+  
 ```
 
 ---
