@@ -148,9 +148,7 @@ streamlit run main.py
 
 ##  Project Roadmap
 
-- [X] `► INSERT-TASK-1`
-- [ ] `► INSERT-TASK-2`
-- [ ] `► ...`
+-- Will be there --
 
 ---
 
